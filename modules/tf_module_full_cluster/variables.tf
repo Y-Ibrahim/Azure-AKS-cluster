@@ -18,3 +18,8 @@ variable "vm_size" {
     description = "size of vm"
     default = "Standard_B4ms"
 }
+
+variable "acr_name" {
+    description = "name of azure container registry"
+    default = "portfolio-website"
+}

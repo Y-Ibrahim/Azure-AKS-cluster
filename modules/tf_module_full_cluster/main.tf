@@ -1,10 +1,18 @@
+# Create ACR
+resource "azurerm_container_registry" "acr" {
+  name = var.acr_name
+  resource_group_name = var.resource
+  location = var.location
+  admin_enabled = false
+}
+
 # Create AKS cluster configuration
-resource "azurerm_arc_kubernetes_cluster" "aks_cluster" {
+resource "azurerm_kubernetes_cluster" "aks_cluster" {
   name                         = "${var.name}-cluster"
-  resource_group_name          = azure_resource_name
+  resource_group_name          = var.resource
   location                     = "${var.region}"
   agent_public_key_certificate = filebase64("testdata/public.cer")
-  dns_prefix                   = "var.name"
+  dns_prefix                   = var.name
 
   default_node_pool {
     name = "system"
