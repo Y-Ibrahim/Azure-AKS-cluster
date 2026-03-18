@@ -3,6 +3,10 @@ resource "azurerm_virtual_network" "aks_virtual_network" {
   location            = var.location
   resource_group_name = var.resource_group_name
   address_space       = var.address_space
+
+  tags = {
+    environment = var.cluster_name
+  }
 }
 
 resource "azurerm_subnet" "aks" {
