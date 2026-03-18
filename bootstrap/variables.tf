@@ -7,7 +7,7 @@ variable "aks_storage_account_name" {
 variable "aks_resource_group_name" {
     description = "Name of the resource group"
     type        = string
-    default     = "AKS-group"
+    default     = "tfstate_storage_group"
 }
 
 variable "location" {

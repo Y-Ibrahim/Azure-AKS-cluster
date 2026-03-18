@@ -8,5 +8,5 @@ output "container_name" {
 }
 
 output "resource_group_name" {
-  value = azurerm_resource_group.AKS_group.name
+  value = azurerm_resource_group.tfstate_storage_group.name
 }
