@@ -24,6 +24,13 @@ provider "azurerm" {
 
 }
 
+# Helm provider
+provider "helm" {
+  kubernetes {
+    config_path = "~/.kube/config"
+  }
+}
+
 # Create 'AKS-group' resource group
 resource "azurerm_resource_group" "aks_rg" {
   name     = "AKS-group"
