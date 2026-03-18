@@ -1,6 +1,21 @@
+globalArguments:
+  - "--global.sendanonymoususage=false"
+  - "--global.checknewversion=false"
+
+additionalArguments:
+  - "--serversTransport.insecureSkipVerify=false"
+  - "--log.level=DEBUG"
+
+
+# Deployment
 deployment:
   replicas: 2
-  
+  enabled: true
+  annotations: {}
+  podAnnotations: {}
+  additionalContainers: {}
+  initContainers: {}
+
 # Pod disruption budget
 podDisruptionBudget:
   enabled: true
@@ -15,6 +30,14 @@ resources:
     cpu: "500m"
     memory: "256Mi"
 
+# Ports
+ports:
+  web:
+    redirectTo: websecure
+  websecure:
+    tls:
+      enabled: true
+
 # Ingress
 ingressClass:
   enabled: true
@@ -26,15 +49,15 @@ providers:
   kubernetesCRD:
     enabled: false
 
-ports:
-  web:
-    exposedPort: 80
-  websecure:
-    exposedPort: 443
-
+rbac:
+  enabled: true
 
 service:
+  enabled: true
   type: LoadBalancer
+  annotations: {}
+  labels: {}
+
 
 metrics:
   enabled: true
