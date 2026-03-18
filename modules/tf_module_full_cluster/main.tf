@@ -29,6 +29,7 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
   network_profile {
     network_plugin = "kubenet"
     load_balancer_sku = "standard"
+    outbound_type = "loadBalancer"
   }
 
   azure_active_directory_role_based_access_control {
