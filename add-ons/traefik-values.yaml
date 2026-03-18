@@ -1,0 +1,40 @@
+deployment:
+  replicas: 2
+  
+# Pod disruption budget
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 1
+
+# Resource limits
+resources:
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+  limits:
+    cpu: "500m"
+    memory: "256Mi"
+
+# Ingress
+ingressClass:
+  enabled: true
+  isDefaultClass: true
+
+providers:
+  kubernetesIngress:
+    enabled: true
+  kubernetesCRD:
+    enabled: false
+
+ports:
+  web:
+    exposedPort: 80
+  websecure:
+    exposedPort: 443
+
+
+service:
+  type: LoadBalancer
+
+metrics:
+  enabled: true
