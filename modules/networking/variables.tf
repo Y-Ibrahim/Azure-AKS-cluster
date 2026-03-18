@@ -31,3 +31,7 @@ variable "location" {
     type = string
     default = "UKSouth"
 }
+
+variable "cluster_name" {
+    description = "Name of cluster"
+}
