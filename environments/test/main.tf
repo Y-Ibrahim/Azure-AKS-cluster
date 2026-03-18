@@ -49,6 +49,15 @@ name     = var.cluster_name
 resource_group_name = azurerm_resource_group.aks_rg.name
 }
 
+# Module: Networking
+module "networking" {
+  source              = "../../modules/networking"
+  aks_vnet_name       = "test-cluster-vnet"
+  aks_subnet_name     = "test-subnet"
+  resource_group_name = azurerm_resource_group.aks_rg.name
+  location            = var.location
+}
+
 # Module: Fullcluster
 module "test_cluster" {
 source = "../../modules/tf_module_full_cluster"
