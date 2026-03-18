@@ -24,9 +24,14 @@ provider "azurerm" {
 
 }
 
+# Kubernetes provider
+provider "kubernetes" {
+  config_path = "~/.kube/config"
+}
+
 # Helm provider
 provider "helm" {
-  kubernetes {
+  kubernetes = {
     config_path = "~/.kube/config"
   }
 }
@@ -70,4 +75,10 @@ ssh_key = var.ssh_key
 # node pool
 node_count = 2
 vm_size = "Standard_B4ms"
+}
+
+# Install Traefik onto cluster via helm
+module "traefik" {
+source  = "aigisuk/traefik/kubernetes"
+version = "0.2.1"
 }
